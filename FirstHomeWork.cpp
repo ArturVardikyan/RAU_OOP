@@ -1,6 +1,4 @@
-﻿// C++Lessons.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-#include <iostream>
+﻿#include <iostream>
 #include <cstdlib>
 using std::cout;
 using std::endl;
@@ -15,7 +13,7 @@ public:
         size = s;
         dataPointer = (T*)malloc(size * sizeof(T));
         if (dataPointer == nullptr) {
-            std::cout << "Size mismatch in assignment\n";
+            cout << "Size mismatch in assignment\n";
             exit(EXIT_FAILURE);
         }
     }
@@ -25,8 +23,8 @@ public:
     MyArray& operator=(const MyArray& other) {
         if (this != &other)
         {
-            if (size != other.size) { // Проверка на размер
-                std::cerr << "Size mismatch in assignment\n";
+            if (size != other.size) { 
+                cout << "Size mismatch in assignment\n";
                 exit(EXIT_FAILURE);
             }
             for (size_t i = 0; i < size; i++)
@@ -38,7 +36,7 @@ public:
     }
     T& operator[](size_t index) {
         if (index >= size && index >= 0) {
-                std::cout << "Index out of bounds\n";
+                cout << "Index out of bounds\n";
                 exit(EXIT_FAILURE);
             }
         
@@ -73,7 +71,7 @@ public:
     }
     T max_size_() const{
         if (size == 0) {
-            std::cout << "Array is empty\n";
+            cout << "Array is empty\n";
             exit(EXIT_FAILURE);
         }
         T max = dataPointer[0];
@@ -89,20 +87,20 @@ public:
     void print_() const{
         for (size_t i = 0; i < size; i++)
         {
-            std::cout << dataPointer[i] <<  " ";
+            cout << dataPointer[i] <<  " ";
         }
-        std::cout << endl;
+        cout << endl;
     }
     T front_() const {
         if (size == 0) {
-            std::cout << "Array is empty\n";
+            cout << "Array is empty\n";
             exit(EXIT_FAILURE);
         }
         return dataPointer[0];
     }
     T back_() const{
         if (size == 0) {
-            std::cout << "Array is empty\n";
+            cout << "Array is empty\n";
             exit(EXIT_FAILURE);
         }
         return dataPointer[size - 1];
@@ -115,7 +113,7 @@ public:
         {
             return dataPointer[index];
         }
-        std::cout << "Index out of bounds\n";
+        cout << "Index out of bounds\n";
         return T();
     }
    
@@ -130,20 +128,24 @@ int main() {
     std::cout << "Array elements: " ;
     array1.print_();
     
-    std::cout << "Max element: " << array1.max_size_() << std::endl;
-    std::cout << "First element: " << array1.front_() << std::endl;
-    std::cout << "Last element: " << array1.back_() << std::endl;
-    std::cout << "Second element check: " << array1.empty_(2) << std::endl;
+    cout << "Max element: " << array1.max_size_() << endl;
+    cout << "First element: " << array1.front_() << endl;
+    cout << "Last element: " << array1.back_() << endl;
+    cout << "Second element check: " << array1.empty_(2) << endl;
     array1.clear_();
-    std::cout << "Array cleaned" << std::endl;
+    cout << "Array cleaned" << endl;
    
     for (size_t i = 0; i < array1.getSize(); i++)
     {
-        std::cout <<"Element - " << i << " check: " << array1.at_(i) << std::endl;
+        cout <<"Element - " << i << " check: " << array1.at_(i) << endl;
     }
-    
+    array1.fill_(5);
+    cout << "Array filed with 5" << endl;
+    array1.print_();
     return 0;
 }
+
+
 
 
 
